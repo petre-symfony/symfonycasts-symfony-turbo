@@ -1,5 +1,4 @@
 <?php
-sleep();
 
 use App\Kernel;
 
