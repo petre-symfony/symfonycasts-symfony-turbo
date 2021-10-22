@@ -10,11 +10,3 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
-
-import $ from 'jquery';
-
-$(document).ready(() => {
-	console.log('page is ready!')
-})
-
-console.log('script is done!')
