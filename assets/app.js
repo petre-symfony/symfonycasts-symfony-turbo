@@ -17,4 +17,4 @@ $(document).ready(() => {
 	console.log('page is ready!')
 })
 
-console.log('script is done!') 
+console.log('script is done!')
