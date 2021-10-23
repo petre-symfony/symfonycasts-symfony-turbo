@@ -102,7 +102,7 @@ const TurboHelper = class {
 				event.detail.newBody.classList.add('turbo-loading');
 			}
 		});
-		
+
 		document.addEventListener('turbo:render', () => {
 			if (!this.isPreviewRendered()) {
 				// if this is a preview, then we do nothing: stay faded out

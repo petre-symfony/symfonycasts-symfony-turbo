@@ -7,9 +7,11 @@ body {
 	transition: opacity 200ms;
 }
 
+/*
 body.turbo-loading {
 	opacity: .8;
 }
+*/
 
 a, a:hover {
 	color: #000;
