@@ -34,6 +34,10 @@ const TurboHelper = class {
 			this.closeModal()
 			this.closeSweetAlert()
 		})
+
+		document.addEventListener('turbo:before-render', () => {
+			console.log('before render')
+		})
 	}
 
 	closeModal(){
