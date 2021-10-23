@@ -24,6 +24,7 @@ document.addEventListener('turbo:before-cache', () => {
 	}
 
 	if (Swal.isVisible()){
+		Swal.getPopup().style.animationDuration = '0ms'
 		Swal.close()
 	}
 })
