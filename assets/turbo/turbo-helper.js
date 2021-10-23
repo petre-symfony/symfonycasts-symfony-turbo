@@ -45,8 +45,18 @@ const TurboHelper = class {
 		})
 
 		document.addEventListener('turbo:before-render', (event) => {
-			// when we are *about* to render, start us faded out
-			event.detail.newBody.classList.add('turbo-loading');
+			if (this.isPreviewRendered()) {
+				event.detail.newBody.classList.remove('turbo-loading');
+
+				requestAnimationFrame(() => {
+					event.detail.newBody.classList.add('turbo-loading');
+				});
+			} else {
+				if (!this.isPreviewRendered()) {
+					// when we are *about* to render, start us faded out
+					event.detail.newBody.classList.add('turbo-loading');
+				}
+			}
 		});
 
 		document.addEventListener('turbo:render', () => {
@@ -84,6 +94,10 @@ const TurboHelper = class {
 
 	initializeWeatherWidget(){
 		__weatherwidget_init()
+	}
+
+	isPreviewRendered() {
+		return document.documentElement.hasAttribute('data-turbo-preview')
 	}
 }
 
