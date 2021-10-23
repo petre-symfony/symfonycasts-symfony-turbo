@@ -38,6 +38,11 @@ const TurboHelper = class {
 		document.addEventListener('turbo:render', () => {
 			this.initializeWeatherWidget()
 		})
+
+		document.addEventListener('turbo:visit', () => {
+			// fade out the old body
+			document.body.classList.add('turbo-loading')
+		})
 	}
 
 	closeModal(){
