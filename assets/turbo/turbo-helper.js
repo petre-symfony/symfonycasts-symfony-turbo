@@ -52,6 +52,15 @@ const TurboHelper = class {
 					event.detail.newBody.classList.add('turbo-loading');
 				});
 			} else {
+				const isRestoration = event.detail.newBody.classList.contains('turbo-loading')
+				if (isRestoration) {
+					// this is a restoration (back button). Remove the class
+					// so it simply starts with full opacity
+
+					event.detail.newBody.classList.remove('turbo-loading')
+					return
+				}
+
 				if (!this.isPreviewRendered()) {
 					// when we are *about* to render, start us faded out
 					event.detail.newBody.classList.add('turbo-loading');
