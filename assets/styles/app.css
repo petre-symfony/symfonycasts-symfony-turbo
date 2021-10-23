@@ -10,9 +10,11 @@ a, a:hover {
 	color: #000;
 }
 
+/*
 [data-turbo-preview] body {
 	opacity: .2;
 }
+*/
 
 h1 {
 	font-size: 1.7rem;
