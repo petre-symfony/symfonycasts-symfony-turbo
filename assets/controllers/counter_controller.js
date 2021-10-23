@@ -1,5 +1,5 @@
 import {Controller} from 'stimulus';
-import * as Turbo from '@hotwired/turbo';
+import { visit } from '@hotwired/turbo';
 
 export default class extends Controller {
 	count = 0;
@@ -10,7 +10,7 @@ export default class extends Controller {
 		this.countTarget.innerText = this.count;
 
 		if (this.count === 10){
-			Turbo.visit('/you-won');
+			visit('/you-won');
 		}
 	}
 }
