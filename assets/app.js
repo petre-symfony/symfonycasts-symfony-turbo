@@ -11,7 +11,6 @@ import './styles/app.css';
 // start the Stimulus application
 import './bootstrap';
 import { Modal } from 'bootstrap'
-import Swal from 'sweetalert2'
 
 document.addEventListener('turbo:before-cache', () => {
 	if (document.body.classList.contains('modal-open')) {
@@ -24,8 +23,16 @@ document.addEventListener('turbo:before-cache', () => {
 	}
 
 	if (Swal.isVisible()){
-		Swal.getPopup().style.animationDuration = '0ms'
-		Swal.close()
+		// internal way to see if sweetalert2 has been imported yet
+		if (__webpack_modules__[require.resolveWeak('sweetalert2')]) {
+			// because we know it's been imported, this will run synchronously
+			import('sweetalert2').then((Swal) => {
+				if (Swal.default.isVisible()) {
+					Swal.default.getPopup().style.animationDuration = '0ms'
+					Swal.default.close()
+				}
+			})
+		}
 	}
 })
 
