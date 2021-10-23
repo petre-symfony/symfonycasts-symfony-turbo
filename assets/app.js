@@ -22,3 +22,31 @@ document.addEventListener('turbo:before-cache', () => {
 		modal.dispose()
 	}
 })
+
+const findCacheControlMeta = () => {
+	return document.querySelector('meta[name="turbo-cache-control"]');
+}
+
+document.addEventListener('show.bs.modal', () => {
+	if (findCacheControlMeta()) {
+		// don't modify an existing one
+		return;
+	}
+
+	const meta = document.createElement('meta');
+	meta.name = 'turbo-cache-control';
+	meta.content = 'no-cache';
+	meta.dataset.removable = true;
+	document.querySelector('head').appendChild(meta);
+});
+
+
+document.addEventListener('hidden.bs.modal', () => {
+	const meta = findCacheControlMeta();
+	// only remove it if we added it
+	if (!meta || !meta.dataset.removable) {
+		return;
+	}
+
+	meta.remove();
+}); 
