@@ -36,7 +36,7 @@ const TurboHelper = class {
 		})
 
 		document.addEventListener('turbo:before-render', () => {
-			console.log('before render')
+			document.querySelector('#weatherwidget-io-js').remove()
 		})
 	}
 
