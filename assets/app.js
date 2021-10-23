@@ -11,5 +11,3 @@ import './styles/app.css';
 // start the Stimulus application
 import './bootstrap';
 import './turbo/turbo-helper';
-
-console.log('new code!')
