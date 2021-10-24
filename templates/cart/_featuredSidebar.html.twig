@@ -20,9 +20,14 @@
 			{%  else %}
 				{{ featuredProduct.description|u.truncate(25) }}...
 
-				<a href="{{ path('_app_cart_product_featured', {
-					description: true
-				}) }}">(read more)</a>
+				<a
+					href="{{ path('_app_cart_product_featured', {
+						description: true
+					}) }}"
+					data-turbo-frame="cart-sidebar"
+				>
+					(read more)
+				</a>
 			{% endif %}
 
 			{{ include('product/_cart_add_controls.html.twig') }}
