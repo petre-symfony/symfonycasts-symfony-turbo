@@ -13,6 +13,10 @@ body.turbo-loading {
 }
 */
 
+turbo-frame[busy] {
+	opacity: .2;
+}
+
 turbo-frame[busy] .frame-loading-hide, turbo-frame .frame-loading-show {
 	display: none;
 }
