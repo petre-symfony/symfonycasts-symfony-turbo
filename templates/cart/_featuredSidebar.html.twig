@@ -15,6 +15,7 @@
 				{{ featuredProduct.priceString|format_currency('USD') }}
 			</h6>
 
+			{{ featuredProduct.description|u.truncate(25) }}
 			{{ include('product/_cart_add_controls.html.twig') }}
 		</div>
 	</div>
