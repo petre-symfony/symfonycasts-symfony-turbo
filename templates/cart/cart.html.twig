@@ -10,7 +10,7 @@
 			<aside class="col-12 col-md-4 order-2 order-md-1">
 				<turbo-frame
 					id="cart-sidebar"
-					src="{{ fragment_uri(controller('App\\Controller\\CartController::_cartFeaturedProduct')) }}"
+					src="{{ path('_app_cart_product_featured') }}"
 					target="_top"
 				>
 					Loading...
