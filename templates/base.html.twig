@@ -87,7 +87,7 @@
 		</div>
 
 		{% block weather_widget %}
-			<turbo-frame id="weather_widget" src="{{ path('app_weather') }}"></turbo-frame>
+			<turbo-frame id="weather_widget" src="{{ path('app_weather') }}" loading="lazy"></turbo-frame>
 		{% endblock %}
 
 		<script>
