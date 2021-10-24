@@ -27,7 +27,7 @@ class CartController extends AbstractController {
 		]);
 	}
 
-	
+
 	public function _cartFeaturedProduct(ProductRepository  $productRepository): Response
 	{
 		$featuredProduct = $productRepository->findFeatured();
