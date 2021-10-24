@@ -3,7 +3,11 @@ import { Controller } from 'stimulus';
 
 export default class extends Controller {
 	connect() {
-		this.initializeScriptTag(document, 'script', 'weatherwidget-io-js')
+		if (typeof __weatherwidget_init === 'function') {
+			__weatherwidget_init()
+		} else {
+			this.initializeScriptTag(document, 'script', 'weatherwidget-io-js')
+		}
 	}
 
 	initializeScriptTag(d, s, id) {

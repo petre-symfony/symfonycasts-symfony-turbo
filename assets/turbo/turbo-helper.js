@@ -35,10 +35,6 @@ const TurboHelper = class {
 			this.closeSweetAlert()
 		})
 
-		document.addEventListener('turbo:render', () => {
-			this.initializeWeatherWidget()
-		})
-
 		this.initializeTranzitions()
 	}
 
@@ -63,12 +59,6 @@ const TurboHelper = class {
 					Swal.default.close()
 				}
 			})
-		}
-	}
-
-	initializeWeatherWidget(){
-		if (typeof __weatherwidget_init === 'function') {
-			__weatherwidget_init()
 		}
 	}
 
