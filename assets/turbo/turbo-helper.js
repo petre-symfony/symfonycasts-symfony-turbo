@@ -67,7 +67,9 @@ const TurboHelper = class {
 	}
 
 	initializeWeatherWidget(){
-		__weatherwidget_init()
+		if (typeof __weatherwidget_init === 'function') {
+			__weatherwidget_init()
+		}
 	}
 
 	isPreviewRendered() {
