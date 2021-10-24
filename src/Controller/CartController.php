@@ -38,8 +38,6 @@ class CartController extends AbstractController {
 			'product' => $featuredProduct,
 		]);
 
-		sleep(3);
-
 		return $this->renderForm('cart/_featuredSidebar.html.twig', [
 			'featuredProduct' => $featuredProduct,
 			'addToCartForm' => $addToCartForm,
