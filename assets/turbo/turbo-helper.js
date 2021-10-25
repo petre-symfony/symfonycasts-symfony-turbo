@@ -35,6 +35,10 @@ const TurboHelper = class {
 			this.closeSweetAlert()
 		})
 
+		document.addEventListener('turbo:submit-start', event => {
+			console.log('submit-start', event)
+		})
+
 		this.initializeTranzitions()
 	}
 
