@@ -33,10 +33,13 @@ const TurboHelper = class {
 		document.addEventListener('turbo:before-cache', () => {
 			this.closeModal()
 			this.closeSweetAlert()
+			this.reenableSubmitButtons()
 		})
 
 		document.addEventListener('turbo:submit-start', event => {
-			event.detail.formSubmission.submitter.toggleAttribute('disabled', true)
+			const submitter = event.detail.formSubmission.submitter
+			submitter.toggleAttribute('disabled', true)
+			submitter.classList.add('turbo-submit-disabled')
 		})
 
 		this.initializeTranzitions()
@@ -110,6 +113,13 @@ const TurboHelper = class {
 				});
 			}
 		});
+	}
+
+	reenableSubmitButtons(){
+		document.querySelectorAll('.turbo-submit-disabled').forEach((button) => {
+			button.toggleAttribute('disabled', false)
+			button.classList.remove('turbo-submit-disabled')
+		})
 	}
 }
 
