@@ -36,7 +36,7 @@ const TurboHelper = class {
 		})
 
 		document.addEventListener('turbo:submit-start', event => {
-			console.log('submit-start', event)
+			event.detail.formSubmission.submitter.toggleAttribute('disabled', true)
 		})
 
 		this.initializeTranzitions()
