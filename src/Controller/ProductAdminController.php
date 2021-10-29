@@ -32,7 +32,9 @@ class ProductAdminController extends AbstractController {
 	 */
 	public function new(Request $request): Response {
 		$product = new Product();
-		$form = $this->createForm(ProductType::class, $product);
+		$form = $this->createForm(ProductType::class, $product, [
+			'action' => $this->generateUrl('product_admin_new')
+		]);
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
@@ -59,7 +61,11 @@ class ProductAdminController extends AbstractController {
 	 * @Route("/{id}/edit", name="product_admin_edit", methods={"GET","POST"})
 	 */
 	public function edit(Request $request, Product $product): Response {
-		$form = $this->createForm(ProductType::class, $product);
+		$form = $this->createForm(ProductType::class, $product, [
+			'action' => $this->generateUrl('product_admin_edit', [
+				'id' => $product->getId()
+			])
+		]);
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
