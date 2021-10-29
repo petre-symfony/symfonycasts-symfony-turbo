@@ -7,7 +7,8 @@ export default class extends Controller {
 	modal = null;
 
 	connect() {
-		document.addEventListener('turbo:before-fetch-response', this.beforeFetchResponse)
+		this.boundBeforeFetchResponse = this.beforeFetchResponse.bind(this)
+		document.addEventListener('turbo:before-fetch-response', this.boundBeforeFetchResponse)
 	}
 
 	async openModal(event) {
