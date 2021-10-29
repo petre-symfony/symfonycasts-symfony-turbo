@@ -8,8 +8,13 @@ export default class extends Controller {
 	connect() {
 		document.addEventListener('turbo:before-fetch-response', event => {
 			console.log(event)
-			if (event.detail.success) {
-				//this.modal.hide()
+			if (!this.modal || !this.modal._isShown) {
+				return
+			}
+
+			const fetchResponse = event.detail.fetchResponse
+			if (fetchResponse.succeeded && fetchResponse.redirected){
+				this.modal.hide()
 			}
 		})
 	}
