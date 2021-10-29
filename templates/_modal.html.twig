@@ -13,13 +13,12 @@
 								aria-label="Close">
 				</button>
 			</div>
-			<div
+			<turbo-frame
 				class="modal-body"
-				data-modal-form-target="modalBody"
-				data-action="submit->modal-form#submitForm"
+				src="{{ modalSrc }}"
 			>
 				{{ modalContent|default('Loading...') }}
-			</div>
+			</turbo-frame>
 			<div class="modal-footer">
 				<button type="button"
 								class="btn btn-secondary"
