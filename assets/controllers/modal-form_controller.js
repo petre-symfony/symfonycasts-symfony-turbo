@@ -14,6 +14,7 @@ export default class extends Controller {
 
 			const fetchResponse = event.detail.fetchResponse
 			if (fetchResponse.succeeded && fetchResponse.redirected){
+				event.preventDefault()
 				this.modal.hide()
 			}
 		})
