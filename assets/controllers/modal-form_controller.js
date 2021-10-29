@@ -8,9 +8,12 @@ export default class extends Controller {
 	connect() {
 		this.element.addEventListener('turbo:submit-end', event => {
 			console.log(event)
+			if (event.detail.success) {
+				this.modal.hide()
+			}
 		})
 	}
-	
+
 	async openModal(event) {
 		this.modal = new Modal(this.modalTarget);
 		this.modal.show();
