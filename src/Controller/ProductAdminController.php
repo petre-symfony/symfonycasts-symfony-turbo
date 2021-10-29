@@ -71,7 +71,9 @@ class ProductAdminController extends AbstractController {
 		if ($form->isSubmitted() && $form->isValid()) {
 			$this->getDoctrine()->getManager()->flush();
 
-			return $this->redirectToRoute('product_admin_index');
+			return $this->redirectToRoute('app_product', [
+				'id' => $product->getId()
+			]);
 		}
 
 		return $this->renderForm('product_admin/edit.html.twig', [
