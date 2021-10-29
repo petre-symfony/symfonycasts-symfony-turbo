@@ -6,10 +6,10 @@ export default class extends Controller {
 	modal = null;
 
 	connect() {
-		this.element.addEventListener('turbo:before-fetch-response', event => {
+		document.addEventListener('turbo:before-fetch-response', event => {
 			console.log(event)
 			if (event.detail.success) {
-				this.modal.hide()
+				//this.modal.hide()
 			}
 		})
 	}
