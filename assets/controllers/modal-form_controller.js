@@ -1,5 +1,6 @@
 import {Controller} from 'stimulus';
 import {Modal} from 'bootstrap';
+import * as Turbo from '@hotwired/turbo'
 
 export default class extends Controller {
 	static targets = ['modal'];
@@ -15,7 +16,7 @@ export default class extends Controller {
 			const fetchResponse = event.detail.fetchResponse
 			if (fetchResponse.succeeded && fetchResponse.redirected){
 				event.preventDefault()
-				this.modal.hide()
+				Turbo.visit(fetchResponse.location)
 			}
 		})
 	}
