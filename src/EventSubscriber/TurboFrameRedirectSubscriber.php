@@ -11,6 +11,11 @@ class TurboFrameRedirectSubscriber implements EventSubscriberInterface {
 		if (!$this->shouldWrapRedirect($event->getRequest(), $event->getResponse())) {
 			return;
 		}
+
+		$response = new Response(null, 200, [
+			'Turbo-Location' => $event->getResponse()->headers->get('Location'),
+		]);
+		$event->setResponse($response);
 	}
 
 	public static function getSubscribedEvents() {
