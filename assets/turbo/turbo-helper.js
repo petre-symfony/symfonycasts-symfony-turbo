@@ -43,6 +43,10 @@ const TurboHelper = class {
 			submitter.classList.add('turbo-submit-disabled')
 		})
 
+		document.addEventListener('turbo:before-fetch-request', (event) => {
+			this.beforeFetchRequest(event)
+		})
+
 		document.addEventListener('turbo:before-fetch-response', (event) => {
 			this.beforeFetchResponse(event)
 		})
@@ -141,6 +145,10 @@ const TurboHelper = class {
 		event.preventDefault()
 		Turbo.clearCache()
 		Turbo.visit(fetchResponse.location)
+	}
+
+	beforeFetchRequest(event) {
+		console.log(event)
 	}
 
 	getCurrentFrame() {
