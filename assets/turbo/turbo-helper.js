@@ -141,6 +141,7 @@ const TurboHelper = class {
 
 
 		event.preventDefault()
+		Turbo.clearCache()
 		Turbo.visit(fetchResponse.location)
 	}
 
