@@ -133,18 +133,15 @@ const TurboHelper = class {
 
 	beforeFetchResponse(event) {
 		const fetchResponse = event.detail.fetchResponse
-		if (!fetchResponse.succeeded || !fetchResponse.redirected){
-			return;
-		}
-
-		if (!this.getCurrentFrame() || !this.getCurrentFrame().dataset.turboFormRedirect){
-			return;
+		const redirectLocation = fetchResponse.response.headers.get('Turbo-Location')
+		if (!redirectLocation) {
+			return
 		}
 
 
 		event.preventDefault()
 		Turbo.clearCache()
-		Turbo.visit(fetchResponse.location)
+		Turbo.visit(redirectLocation)
 	}
 
 	beforeFetchRequest(event) {
@@ -160,10 +157,6 @@ const TurboHelper = class {
 		}
 
 		event.detail.fetchOptions.headers['Turbo-Frame-Redirect'] = 1
-	}
-
-	getCurrentFrame() {
-		return document.querySelector('turbo-frame[busy]')
 	}
 }
 
