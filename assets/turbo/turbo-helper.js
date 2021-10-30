@@ -148,7 +148,18 @@ const TurboHelper = class {
 	}
 
 	beforeFetchRequest(event) {
-		console.log(event)
+		const frameId = event.detail.fetchOptions.headers['Turbo-Frame']
+		if (!frameId) {
+			return
+		}
+
+		const frame = document.querySelector(`#${frameId}`)
+
+		if (!frame || !frame.dataset.turboFormRedirect) {
+			return
+		}
+
+		event.detail.fetchOptions.headers['Turbo-Frame-Redirect'] = 1
 	}
 
 	getCurrentFrame() {
