@@ -127,7 +127,7 @@ const TurboHelper = class {
 		})
 	}
 
-	async beforeFetchResponse(event) {
+	beforeFetchResponse(event) {
 		const fetchResponse = event.detail.fetchResponse
 		if (!fetchResponse.succeeded || !fetchResponse.redirected){
 			return;
@@ -140,11 +140,7 @@ const TurboHelper = class {
 
 		event.preventDefault()
 		Turbo.clearCache()
-		const snapshot = Turbo.PageSnapshot.fromHTMLString(await fetchResponse.responseHTML)
-		Turbo.navigator.view.snapshotCache.put(fetchResponse.location, snapshot)
-		Turbo.visit(fetchResponse.location, {
-			action: 'restore'
-		})
+		Turbo.visit(fetchResponse.location)
 	}
 
 	getCurrentFrame() {
