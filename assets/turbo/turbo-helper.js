@@ -1,4 +1,5 @@
 import { Modal } from 'bootstrap'
+import * as Turbo from "@hotwired/turbo";
 
 const TurboHelper = class {
 	constructor() {
@@ -42,6 +43,10 @@ const TurboHelper = class {
 			submitter.classList.add('turbo-submit-disabled')
 		})
 
+		document.addEventListener('turbo:before-fetch-response', (event) => {
+			this.beforeFetchResponse(event)
+		})
+		
 		this.initializeTranzitions()
 	}
 
@@ -120,6 +125,18 @@ const TurboHelper = class {
 			button.toggleAttribute('disabled', false)
 			button.classList.remove('turbo-submit-disabled')
 		})
+	}
+
+	beforeFetchResponse(event) {
+		if (!this.modal || !this.modal._isShown) {
+			return
+		}
+
+		const fetchResponse = event.detail.fetchResponse
+		if (fetchResponse.succeeded && fetchResponse.redirected){
+			event.preventDefault()
+			Turbo.visit(fetchResponse.location)
+		}
 	}
 }
 
