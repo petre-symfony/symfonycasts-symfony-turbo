@@ -20,7 +20,11 @@ class TurboFrameRedirectSubscriber implements EventSubscriberInterface {
 	}
 
 	private function shouldWrapRedirect(Request $request, Response $response):bool {
+		if (!$response->isRedirection()) {
+			return false;
+		}
 
+		return (bool) $request->headers->get('Turbo-Frame-Redirect');
 	}
 
 }
