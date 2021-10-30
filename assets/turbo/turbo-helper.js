@@ -46,7 +46,7 @@ const TurboHelper = class {
 		document.addEventListener('turbo:before-fetch-response', (event) => {
 			this.beforeFetchResponse(event)
 		})
-		
+
 		this.initializeTranzitions()
 	}
 
@@ -128,15 +128,24 @@ const TurboHelper = class {
 	}
 
 	beforeFetchResponse(event) {
-		if (!this.modal || !this.modal._isShown) {
-			return
-		}
+
 
 		const fetchResponse = event.detail.fetchResponse
-		if (fetchResponse.succeeded && fetchResponse.redirected){
-			event.preventDefault()
-			Turbo.visit(fetchResponse.location)
+		if (!fetchResponse.succeeded || !fetchResponse.redirected){
+			return;
 		}
+
+		if (!this.getCurrentFrame() || !this.getCurrentFrame().dataset.turboFormRedirect){
+			return;
+		}
+
+
+		event.preventDefault()
+		Turbo.visit(fetchResponse.location)
+	}
+
+	getCurrentFrame() {
+		return document.querySelector('turbo-frame[busy]')
 	}
 }
 
