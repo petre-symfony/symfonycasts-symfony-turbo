@@ -1,0 +1,4 @@
+curl -d 'topic=product-reviews' \
+-d 'data=<turbo-stream action="update" target="product-quick-stats"><template>QUICK STATS</template></turbo-stream>' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJtZXJjdXJlIjp7InB1Ymxpc2giOlsiKiJdfX0.vhMwOaN5K68BTIhWokMLOeOJO4EPfT64brd8euJOA4M' \
+-X POST http://127.0.0.1:49159/.well-known/mercure
