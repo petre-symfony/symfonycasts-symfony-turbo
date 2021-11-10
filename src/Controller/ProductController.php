@@ -12,6 +12,8 @@ use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mercure\HubInterface;
+use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\UX\Turbo\Stream\TurboStreamResponse;
@@ -67,7 +69,7 @@ class ProductController extends AbstractController {
 	/**
 	 * @Route("/product/{id}/reviews", name="app_product_reviews")
 	 */
-	public function productReviews(Product $product, CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager) {
+	public function productReviews(Product $product, CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager, HubInterface $mercureHub) {
 		$reviewForm = null;
 
 		if ($this->getUser()) {
@@ -76,6 +78,13 @@ class ProductController extends AbstractController {
 
 		if ($request->isMethod('POST')) {
 			$this->denyAccessUnlessGranted('ROLE_USER');
+
+			$update = new Update(
+				'product-reviews',
+				'<turbo-stream action="update" target="product-quick-stats"><template>QUICK STATS</template></turbo-stream>'
+			);
+
+			$mercureHub->publish($update);
 
 			$reviewForm->handleRequest($request);
 
