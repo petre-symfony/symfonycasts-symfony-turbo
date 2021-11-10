@@ -88,7 +88,8 @@ class ProductController extends AbstractController {
 				$update = new Update(
 					'product-reviews',
 					$this->renderView('product/reviews.stream.html.twig', [
-						'product' => $product
+						'product' => $product,
+						'newReview' => $reviewForm->getData()
 					])
 				);
 
