@@ -84,7 +84,7 @@ class ProductController extends AbstractController {
 				$entityManager->flush();
 
 				return $this->render('product/reviews.stream.html.twig', [
-
+					'product' => $product
 				], new TurboStreamResponse());
 
 				$this->addFlash('review_success', 'Thanks for your review! I like you!');
