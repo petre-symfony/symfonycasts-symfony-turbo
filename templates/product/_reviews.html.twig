@@ -33,5 +33,11 @@
 		<div class="alert alert-success">
 			Thanks for your "real" review "human" 😉!
 		</div>
+
+		<a href="{{ path('app_product_reviews', {
+			id: product.id
+		}) }}">
+			Love the product *that* much? Add another review
+		</a>
 	{% endif %}
 </turbo-frame>
