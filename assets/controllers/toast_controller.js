@@ -1,8 +1,9 @@
-import {Controller} from "stimulus";
+import { Controller } from "stimulus"
+import { Toast } from 'bootstrap'
 
 export default class extends Controller {
-
 	connect() {
-		console.log('🍞')
+		const toast = new Toast(this.element)
+		toast.show()
 	}
 }
