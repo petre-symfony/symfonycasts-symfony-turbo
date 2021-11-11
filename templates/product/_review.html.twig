@@ -1,4 +1,4 @@
-<div class="component-light my-3 p-3">
+<div class="component-light my-3 p-3 {{ isNew|default(false) ? 'streamed-new-item' }}">
 	<p><i class="fas fa-user-circle me-2"></i>{{ review.owner.email }} <i
 			class="fas fa-star ms-4"></i> {{ review.stars }}/5</p>
 	<div>

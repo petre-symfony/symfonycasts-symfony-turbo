@@ -193,3 +193,11 @@ h1 {
 .fade-enter-to, .fade-leave-from {
 	opacity: 1;
 }
+
+.streamed-new-item {
+	background-color: lightgreen;
+}
+
+.fade-background {
+	transition: background-color 2000ms;
+}

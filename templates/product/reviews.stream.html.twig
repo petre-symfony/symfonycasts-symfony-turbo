@@ -7,7 +7,8 @@
 <turbo-stream action="append" target="product-{{ product.id }}-review-list">
 	<template>
 		{{ include('product/_review.html.twig', {
-			review: newReview
+			review: newReview,
+			isNew: true
 		}) }}
 	</template>
 </turbo-stream>
