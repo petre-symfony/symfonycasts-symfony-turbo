@@ -1,4 +1,5 @@
 <div
+	id="product-review-{{ review.id }}"
 	class="component-light my-3 p-3"
 	{% if isNew|default(false) %}
 		{{ stimulus_controller('streamed-item', {

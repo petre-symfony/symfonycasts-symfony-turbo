@@ -17,7 +17,13 @@
 	</turbo-stream>
 {% endblock %}
 {% block update %}
-	UPDATE!
+	<turbo-stream action="replace" target="product-review-{{ entity.id }}">
+		<template>
+			{{ include('product/_review.html.twig', {
+				review: entity
+			}) }}
+		</template>
+	</turbo-stream>
 {% endblock %}
 {% block remove %}
 	REMOVE!
