@@ -15,6 +15,15 @@
 			}) }}
 		</template>
 	</turbo-stream>
+
+	<turbo-stream action="append" target="product-{{ entity.product.id }}-toasts">
+		<template>
+			{{ include('_toast.html.twig', {
+				title: 'New Review!',
+				body: 'A new review was just posted for this product'
+			}) }}
+		</template>
+	</turbo-stream>
 {% endblock %}
 {% block update %}
 	<turbo-stream action="replace" target="product-review-{{ entity.id }}">
