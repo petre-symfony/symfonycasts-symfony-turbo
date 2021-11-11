@@ -6,7 +6,10 @@
 
 <turbo-frame id="product-reviews-form">
 	{% for flash in app.flashes('review_success') %}
-		<div class="alert alert-success">{{ flash }}</div>
+		{{ include('_toast.html.twig', {
+			title: 'Success!',
+			body: flash
+		}) }}
 	{% endfor %}
 
 	{% if reviewForm|default(false) %}
