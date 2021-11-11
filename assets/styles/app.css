@@ -194,6 +194,10 @@ h1 {
 	opacity: 1;
 }
 
+.streamed-removed-item {
+	background-color: lightcoral;
+}
+
 .streamed-new-item {
 	background-color: lightgreen;
 }

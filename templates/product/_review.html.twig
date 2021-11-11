@@ -6,6 +6,12 @@
 			className: 'streamed-new-item'
 		}) }}
 	{% endif %}
+	{% if isRemoved|default(false) %}
+		{{ stimulus_controller('streamed-item', {
+			className: 'streamed-removed-item',
+			removeElement: true
+		}) }}
+	{% endif %}
 >
 	<p><i class="fas fa-user-circle me-2"></i>{{ review.owner.email }} <i
 			class="fas fa-star ms-4"></i> {{ review.stars }}/5</p>

@@ -26,5 +26,12 @@
 	</turbo-stream>
 {% endblock %}
 {% block remove %}
-	<turbo-stream action="remove" target="product-review-{{ id }}"></turbo-stream>
+	<turbo-stream action="replace" target="product-review-{{ id }}">
+		<template>
+			{{ include('product/_review.html.twig', {
+				review: entity,
+				isRemoved: true
+			}) }}
+		</template>
+	</turbo-stream>
 {% endblock %}
