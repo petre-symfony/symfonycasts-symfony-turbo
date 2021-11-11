@@ -1,5 +1,18 @@
 {% block create %}
-	CREATE!
+	<turbo-stream action="update" target="product-{{ product.id }}-quick-stats">
+		<template>
+			{{ include('product/_quick_stats.html.twig') }}
+		</template>
+	</turbo-stream>
+
+	<turbo-stream action="append" target="product-{{ product.id }}-review-list">
+		<template>
+			{{ include('product/_review.html.twig', {
+				review: newReview,
+				isNew: true
+			}) }}
+		</template>
+	</turbo-stream>
 {% endblock %}
 {% block update %}
 	UPDATE!

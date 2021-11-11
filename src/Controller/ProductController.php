@@ -12,11 +12,8 @@ use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Mercure\HubInterface;
-use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\UX\Turbo\Stream\TurboStreamResponse;
 
 class ProductController extends AbstractController {
 	/**
@@ -69,7 +66,7 @@ class ProductController extends AbstractController {
 	/**
 	 * @Route("/product/{id}/reviews", name="app_product_reviews")
 	 */
-	public function productReviews(Product $product, CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager, HubInterface $mercureHub) {
+	public function productReviews(Product $product, CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager) {
 		$reviewForm = null;
 
 		if ($this->getUser()) {
@@ -84,16 +81,6 @@ class ProductController extends AbstractController {
 			if ($reviewForm->isSubmitted() && $reviewForm->isValid()) {
 				$entityManager->persist($reviewForm->getData());
 				$entityManager->flush();
-
-				$update = new Update(
-					'product-reviews',
-					$this->renderView('product/reviews.stream.html.twig', [
-						'product' => $product,
-						'newReview' => $reviewForm->getData()
-					])
-				);
-
-				$mercureHub->publish($update);
 
 				$this->addFlash('review_success', 'Thanks for your review! I like you!');
 
